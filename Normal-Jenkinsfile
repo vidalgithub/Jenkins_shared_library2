@@ -25,7 +25,7 @@ pipeline{
         }
         stage("Sonarqube Analysis "){
             steps{
-                withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonarqube-9.9') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=youtube \
                     -Dsonar.projectKey=youtube '''
                 }
@@ -34,7 +34,7 @@ pipeline{
         stage("quality gate"){
            steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token' 
                 }
             } 
         }
