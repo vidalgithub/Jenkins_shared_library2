@@ -6,7 +6,7 @@
 
 
 def call(credentialId) {
-    withSonarQubeEnv('credentialId') {
+    withSonarQubeEnv('credentialsId: credentialsId') {
         sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=youtube -Dsonar.projectKey=youtube '''
     }
 }
