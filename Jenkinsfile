@@ -40,8 +40,10 @@ pipeline{
         stage('sonarqube Analysis'){
         when { expression { params.action == 'create'}}    
             steps{
-
-                    sonarqubeAnalysis(sonarqube-9.9)
+                script{
+                    def credentialsId = 'sonarqube-9.9'
+                    sonarqubeAnalysis(credentialsId)
+                }
 
             }
         }
