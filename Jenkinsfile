@@ -11,7 +11,6 @@ pipeline{
     }
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'Select create or destroy.')
-        
         string(name: 'DOCKER_HUB_USERNAME', defaultValue: 'vidaldocker', description: 'Docker Hub Username')
         string(name: 'IMAGE_NAME', defaultValue: 'youtube', description: 'Docker Image Name')
     }
