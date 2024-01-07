@@ -63,35 +63,35 @@ pipeline{
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-        // stage('Docker Build'){
-        // when { expression { params.action == 'create'}}    
-        //     steps{
-        //         script{
-        //            def dockerHubUsername = params.DOCKER_HUB_USERNAME
-        //            def imageName = params.IMAGE_NAME
+        stage('Docker Build'){
+        when { expression { params.action == 'create'}}    
+            steps{
+                script{
+                   def dockerHubUsername = params.DOCKER_HUB_USERNAME
+                   def imageName = params.IMAGE_NAME
                    
-        //            dockerBuild(dockerHubUsername, imageName)
-        //         }
-        //     }
-        // }
-        // stage('Trivy iamge'){
-        // when { expression { params.action == 'create'}}    
-        //     steps{
-        //         trivyImage()
-        //     }
-        // }
-        // stage('Run container'){
-        // when { expression { params.action == 'create'}}    
-        //     steps{
-        //         runContainer()
-        //     }
-        // }
-        // stage('Remove container'){
-        // when { expression { params.action == 'delete'}}    
-        //     steps{
-        //         removeContainer()
-        //     }
-        // }
+                   dockerBuild(dockerHubUsername, imageName)
+                }
+            }
+        }
+        stage('Trivy iamge'){
+        when { expression { params.action == 'create'}}    
+            steps{
+                trivyImage()
+            }
+        }
+        stage('Run container'){
+        when { expression { params.action == 'create'}}    
+            steps{
+                runContainer()
+            }
+        }
+        stage('Remove container'){
+        when { expression { params.action == 'delete'}}    
+            steps{
+                removeContainer()
+            }
+        }
         // stage('Kube deploy'){
         // when { expression { params.action == 'create'}}    
         //     steps{
