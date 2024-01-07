@@ -51,18 +51,18 @@ pipeline{
                 npmInstall()
             }
         }
-        // stage('Trivy file scan'){
-        // when { expression { params.action == 'create'}}    
-        //     steps{
-        //         trivyFs()
-        //     }
-        // }
-        // stage('OWASP FS SCAN') {
-        //     steps {
-        //         dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-        //         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-        //     }
-        // }
+        stage('Trivy file scan'){
+        when { expression { params.action == 'create'}}    
+            steps{
+                trivyFs()
+            }
+        }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
         // stage('Docker Build'){
         // when { expression { params.action == 'create'}}    
         //     steps{
