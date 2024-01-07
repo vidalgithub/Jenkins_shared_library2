@@ -43,6 +43,7 @@ pipeline{
                 script{
                     def credentialsId = 'sonarqube-9.9'
                     sonarqubeAnalysis(credentialsId)
+                }
             }
         }
         
