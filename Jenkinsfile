@@ -5,7 +5,10 @@ def COLOR_MAP = [
 ]
 
 pipeline{
-    agent any
+    // agent any
+    agent {
+        label 'gcp'
+    }
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'Select create or destroy.')
         
@@ -36,7 +39,7 @@ pipeline{
                 sonarqubeAnalysis()
             }
         }
-        stage('sonarqube QualitGate'){
+        stage('sonarqube QualityGate'){
         when { expression { params.action == 'create'}}    
             steps{
                 script{
@@ -74,7 +77,7 @@ pipeline{
                 }
             }
         }
-        stage('Trivy iamge'){
+        stage('Trivy image'){
         when { expression { params.action == 'create'}}    
             steps{
                 trivyImage()
@@ -98,7 +101,7 @@ pipeline{
                 kubeDeploy()
             }
         }
-        stage('kube deleter'){
+        stage('kube delete'){
         when { expression { params.action == 'delete'}}    
             steps{
                 kubeDelete()
