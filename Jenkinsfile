@@ -10,10 +10,15 @@ pipeline{
         label 'kemgou'
     }
     parameters {
-        choice(name: 'action', choices: 'create\ndelete', description: 'Select create or destroy.')
-        string(name: 'DOCKER_HUB_USERNAME', defaultValue: 'vidaldocker', description: 'Docker Hub Username')
-        string(name: 'IMAGE_NAME', defaultValue: 'youtube', description: 'Docker Image Name')
+      choice choices: ['create', 'delete'], description: 'Select create or delete', name: 'action'
+      string defaultValue: 'vidaldocker', description: 'Docker Hub Username', name: 'DOCKER_HUB_USERNAME'
+      string defaultValue: 'youtube', description: 'Docker Image Name', name: 'IMAGE_NAME'
     }
+    // parameters {
+    //     choice(name: 'action', choices: 'create\ndelete', description: 'Select create or destroy.')
+    //     string(name: 'DOCKER_HUB_USERNAME', defaultValue: 'vidaldocker', description: 'Docker Hub Username')
+    //     string(name: 'IMAGE_NAME', defaultValue: 'youtube', description: 'Docker Image Name')
+    // }
     tools{
         jdk 'jdk17'
         nodejs 'node16'
