@@ -17,6 +17,7 @@ pipeline{
       choice choices: ['create', 'delete'], description: 'Select create or delete', name: 'action'
       string defaultValue: 'vidaldocker', description: 'Docker Hub Username', name: 'DOCKER_HUB_USERNAME'
       string defaultValue: 'youtube', description: 'Docker Image Name', name: 'IMAGE_NAME'
+      listGitBranches branchFilter: '.*', credentialsId: '', defaultValue: 'main', description: 'Choose a branch to build', listSize: '5', name: 'branchName', quickFilterEnabled: false, remoteURL: 'https://github.com/vidalgithub/Jenkins_shared_library2.git', selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH'
     }
     // parameters {
     //     choice(name: 'action', choices: 'create\ndelete', description: 'Select create or destroy.')
