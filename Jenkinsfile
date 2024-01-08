@@ -11,7 +11,7 @@ pipeline{
     }
     options {
       buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '5')
-      timestamps
+      timestamps()
     }
     parameters {
       choice choices: ['create', 'delete'], description: 'Select create or delete', name: 'action'
