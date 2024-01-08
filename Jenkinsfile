@@ -9,6 +9,10 @@ pipeline{
     agent {
         label 'kemgou'
     }
+    options {
+      buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '5')
+      timestamps
+    }
     parameters {
       choice choices: ['create', 'delete'], description: 'Select create or delete', name: 'action'
       string defaultValue: 'vidaldocker', description: 'Docker Hub Username', name: 'DOCKER_HUB_USERNAME'
